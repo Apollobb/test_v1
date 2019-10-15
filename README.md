@@ -5,7 +5,7 @@ http://www.huangdc.com
 
 一、环境
 系统: CentOS 6
-python 版本: Python 2.7.10
+python 版本: Python 2.7.10 change python 3.6
 
 二、Python 虚拟环境
 
