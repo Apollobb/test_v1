@@ -1,0 +1,14 @@
+Flask==1.0.2
+Flask-Migrate==2.3.1
+Flask-SQLAlchemy==2.3.2
+Flask-Script==2.0.6
+Jinja2==2.8
+SQLAlchemy==1.2.4
+Werkzeug==0.14.1
+paramiko==2.4.2
+setuptools==40.6.2
+MySQL-python==1.2.5
+
+本次登录位置 180.190.115.253 - 菲律宾
+上次登录位置 59.53.17.137 - 江西赣州
+上次登录时间 2019-2-19 13:33

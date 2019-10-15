@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - cmdb_test@39.107.89.240" uuid="9115401c-19e7-4624-8071-0687a8f72aee">
+    <database-info product="MySQL" version="5.6.35" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.46 ( Revision: 9cc87a48e75c2d2e87c1a293b2862ce651cb256e )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <schema name="" catalog="cmdb_test"/>
+    <table name="case" schema="" catalog="cmdb_test" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="title" sqlType="VARCHAR" precision="250" scale="0" nullable="false" jdbcType="12"/>
+      <column name="casetype_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="createuser_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="content" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="result" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="auditNum" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="execNum" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="status" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="ctime" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="mtime" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="case_ibfk_1" columns="casetype_id" ref-table="casetype" ref-schema="" ref-catalog="cmdb_test" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="case_ibfk_2" columns="createuser_id" ref-table="user" ref-schema="" ref-catalog="cmdb_test" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="caseaudit_ibfk_1" table="caseaudit" schema="" catalog="cmdb_test" columns="case_id"/>
+      <exported-key name="caseexec_ibfk_1" table="caseexec" schema="" catalog="cmdb_test" columns="case_id"/>
+      <exported-key name="caseoperation_ibfk_1" table="caseoperation" schema="" catalog="cmdb_test" columns="case_id"/>
+    </table>
+    <table name="caseaudit" schema="" catalog="cmdb_test" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="case_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="order" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="status" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="caseaudit_ibfk_1" columns="case_id" ref-table="case" ref-schema="" ref-catalog="cmdb_test" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="caseaudit_ibfk_2" columns="user_id" ref-table="user" ref-schema="" ref-catalog="cmdb_test" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="caseauditmodel" schema="" catalog="cmdb_test" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="casetype_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="order" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="caseauditmodel_ibfk_1" columns="casetype_id" ref-table="casetype" ref-schema="" ref-catalog="cmdb_test" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+    </table>
+    <table name="caseexec" schema="" catalog="cmdb_test" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="case_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="order" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="status" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="caseexec_ibfk_1" columns="case_id" ref-table="case" ref-schema="" ref-catalog="cmdb_test" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="caseexec_ibfk_2" columns="user_id" ref-table="user" ref-schema="" ref-catalog="cmdb_test" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="caseexecmodel" schema="" catalog="cmdb_test" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="casetype_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="order" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="caseexecmodel_ibfk_1" columns="casetype_id" ref-table="casetype" ref-schema="" ref-catalog="cmdb_test" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+    </table>
+    <table name="caseoperation" schema="" catalog="cmdb_test" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="case_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="status" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="content" sqlType="VARCHAR" precision="500" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ctime" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="caseoperation_ibfk_1" columns="case_id" ref-table="case" ref-schema="" ref-catalog="cmdb_test" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="caseoperation_ibfk_2" columns="user_id" ref-table="user" ref-schema="" ref-catalog="cmdb_test" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="casetype" schema="" catalog="cmdb_test" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="createuser_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="confirm_duration" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="exec_duration" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="effective_date" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="type_form" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="ctime" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="mtime" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="status" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="casetype_ibfk_1" columns="createuser_id" ref-table="user" ref-schema="" ref-catalog="cmdb_test" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="case_ibfk_1" table="case" schema="" catalog="cmdb_test" columns="casetype_id"/>
+      <exported-key name="caseauditmodel_ibfk_1" table="caseauditmodel" schema="" catalog="cmdb_test" columns="casetype_id"/>
+      <exported-key name="caseexecmodel_ibfk_1" table="caseexecmodel" schema="" catalog="cmdb_test" columns="casetype_id"/>
+      <index name="ix_casetype_name" unique="true" columns="name"/>
+    </table>
+    <table name="department" schema="" catalog="cmdb_test" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="enname" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="parent" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="ctime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="mtime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="user_ibfk_1" table="user" schema="" catalog="cmdb_test" columns="department_id"/>
+      <index name="ix_department_enname" unique="true" columns="enname"/>
+      <index name="ix_department_name" unique="true" columns="name"/>
+    </table>
+    <table name="engineroom" schema="" catalog="cmdb_test" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="enname" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="contact" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="phone" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="mail" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="address" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ctime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="mtime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="networkip_ibfk_1" table="networkip" schema="" catalog="cmdb_test" columns="engineroom_id"/>
+      <exported-key name="server_ibfk_1" table="server" schema="" catalog="cmdb_test" columns="engineroom_id"/>
+      <index name="ix_engineroom_name" unique="true" columns="name"/>
+    </table>
+    <table name="networkip" schema="" catalog="cmdb_test" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="ip_address" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ip_version" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="ip_type" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="engineroom_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="bandwidth_type" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="bandwidth_size" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="bind_type" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="bind_id" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="status" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="ctime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="mtime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="networkip_ibfk_1" columns="engineroom_id" ref-table="engineroom" ref-schema="" ref-catalog="cmdb_test" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="serverip_ibfk_2" table="serverip" schema="" catalog="cmdb_test" columns="networkip_id"/>
+    </table>
+    <table name="project" schema="" catalog="cmdb_test" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="enname" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="ctime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="mtime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="project_ibfk_1" columns="user_id" ref-table="user" ref-schema="" ref-catalog="cmdb_test" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="serverproject_ibfk_2" table="serverproject" schema="" catalog="cmdb_test" columns="project_id"/>
+      <index name="ix_project_name" unique="true" columns="name"/>
+    </table>
+    <table name="server" schema="" catalog="cmdb_test" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="hostname" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="property_no" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="property_type" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="use_type" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="host_type" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="status" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="engineroom_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="ctime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="mtime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="server_ibfk_1" columns="engineroom_id" ref-table="engineroom" ref-schema="" ref-catalog="cmdb_test" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="serverip_ibfk_1" table="serverip" schema="" catalog="cmdb_test" columns="server_id"/>
+      <exported-key name="serverproject_ibfk_1" table="serverproject" schema="" catalog="cmdb_test" columns="server_id"/>
+      <index name="property_no" unique="true" columns="property_no"/>
+    </table>
+    <table name="serverip" schema="" catalog="cmdb_test" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="server_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="networkip_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="serverip_ibfk_1" columns="server_id" ref-table="server" ref-schema="" ref-catalog="cmdb_test" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="serverip_ibfk_2" columns="networkip_id" ref-table="networkip" ref-schema="" ref-catalog="cmdb_test" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="serverproject" schema="" catalog="cmdb_test" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="server_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="project_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="serverproject_ibfk_1" columns="server_id" ref-table="server" ref-schema="" ref-catalog="cmdb_test" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="serverproject_ibfk_2" columns="project_id" ref-table="project" ref-schema="" ref-catalog="cmdb_test" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="user" schema="" catalog="cmdb_test" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="cnname" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="password_hash" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="department_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="leader" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="is_quit" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="role" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="last_login" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="ctime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="mtime" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="user_ibfk_1" columns="department_id" ref-table="department" ref-schema="" ref-catalog="cmdb_test" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="case_ibfk_2" table="case" schema="" catalog="cmdb_test" columns="createuser_id"/>
+      <exported-key name="caseaudit_ibfk_2" table="caseaudit" schema="" catalog="cmdb_test" columns="user_id"/>
+      <exported-key name="caseexec_ibfk_2" table="caseexec" schema="" catalog="cmdb_test" columns="user_id"/>
+      <exported-key name="caseoperation_ibfk_2" table="caseoperation" schema="" catalog="cmdb_test" columns="user_id"/>
+      <exported-key name="casetype_ibfk_1" table="casetype" schema="" catalog="cmdb_test" columns="createuser_id"/>
+      <exported-key name="project_ibfk_1" table="project" schema="" catalog="cmdb_test" columns="user_id"/>
+      <index name="ix_user_name" unique="true" columns="name"/>
+    </table>
+  </data-source>
+</component>
